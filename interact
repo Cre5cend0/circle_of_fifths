@@ -1,0 +1,101 @@
+# import settings
+# from inputs import inputChecker
+# import time
+#
+#
+# def feedback(question, comment):
+#     file = open('feedback.txt', 'a')
+#     file.write(question + ':' + comment + '\n')
+#
+#
+# def interact(question):
+#     '''
+#     Takes one argument. A question.
+#     Returns user_input if valid, else, adds it to feedback list and raise ValueError
+#     '''
+#     while True:
+#         response = input(question)
+#         try:
+#             result = inputChecker(response)
+#             if result == 10:
+#                 return True
+#             elif result == 5:
+#                 return False
+#             elif result == 2:
+#                 return None
+#             elif result == response:
+#                 return response
+#             elif result == ValueError:
+#                 raise ValueError
+#         except ValueError:
+#             print("Invalid input. Type 'help' command if you\'re having trouble.")
+#             print()
+#             feedback(question, response)
+#
+#
+# def sequencer(list_of_requests):
+#     '''
+#     Takes a list of funcs. For each func in list, calls func(skip)  with 3 sec delay
+#     skip --> Skips the initial input request if Yes.
+#     Automatically detects the last func to run, and changes skip to 'no'.
+#     '''
+#     for i in range(len(list_of_requests)):
+#         skip = 'yes'
+#         if i == (len(list_of_requests) - 1):
+#             skip = 'no'
+#             return list_of_requests[i](skip)
+#         else:
+#             list_of_requests[i](skip)
+#             time.sleep(3)
+#
+#
+# """A blueprint for creating questions for Interact"""
+#
+# QUESTIONS_DICT = {
+#
+#     1: 'Hi! Please pick a Key: ',
+#     2: 'View some simple chords? ',
+#     3: 'Try some complex chords? '
+# }
+#
+# TOPICS = (
+#     # todo
+#     # scales, modes, chords, intervals, chord progressions, notes, fret positions
+# )
+#
+#
+# def ques(num):
+#     return QUESTIONS_DICT[num]
+#
+#
+# class Question:
+#     '''Takes no arguments. default attr skip -> 'no' and response -> None'''
+#     q_no = 1
+#
+#     def __init__(self):
+#         self.name = self.q_no
+#         self.q_no += 1
+#         self.response = None
+#
+#     def gen(self, query, skip='no'):
+#         '''a function generator
+#         Takes one argument.
+#         query: Question to be asked
+#         '''
+#
+#         if skip == 'no':
+#             # ask question
+#             self.response = interact(query)
+#         else:
+#             # continue to perform action
+#             self.response = True
+#
+#         if self.response:
+#             pass
+#         else:
+#             sequencer([self(ques(self.q_no - 1)), self(ques(self.q_no))])
+#
+#         return self.response
+#
+#     def __call__(self, *args, **kwargs):
+#         return self.gen(*args, **kwargs)
