@@ -114,20 +114,11 @@ class Chord(Scale):
         li = cls._chord_dict.keys()
         return li
 
-
 y = Chord.chord_list()
 
 for item in CHROMATICSCALE:
     x = Chord(item)
     applyAll(x.chordGen, y)
-
-# print(Chord.harmony_dict)
-#
-# F = Chord('f')
-#
-# print(F.maj_triads())
-# print(F.min_triads())
-# print(F.dim_triad())
 
 full_chords_dict = {
     'c_maj'      : ['c', 'e', 'g'], 'c_min': ['c', 'Eb', 'g'], 'c_dom7': ['c', 'e', 'g', 'b'],
