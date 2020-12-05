@@ -15,12 +15,3 @@ class Progression(Chord):
                            full_chords_dict[scale[4] + '_maj']]
             return progression[:]
 
-
-def simple_prog(self):
-    notes = self.key.getNotes()
-    print(notes)
-
-
-C = Progression('c')
-
-# print(C.one_four_five())

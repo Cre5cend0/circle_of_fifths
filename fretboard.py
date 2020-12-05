@@ -139,7 +139,6 @@ for item in CHROMATICSCALE:
     x = GuitarString(item)
     string_dict[item] = x
 
-
 for item in accidentals.keys():
     if item not in string_dict:
         x = GuitarString(item)
