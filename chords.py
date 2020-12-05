@@ -122,8 +122,8 @@ for item in CHROMATICSCALE:
     applyAll(x.chordGen, y)
 
 # print(Chord.harmony_dict)
-
-# F = Chord('dm')
+#
+# F = Chord('f')
 #
 # print(F.maj_triads())
 # print(F.min_triads())

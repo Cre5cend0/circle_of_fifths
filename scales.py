@@ -121,7 +121,6 @@ class Scale(Interval):
             my_notes.insert(0, self.root)
             first_char = []
             try:
-
                 for i in range(len(my_notes) - 1):
                     if my_notes[i][0] in semantics.keys():
                         check_note = semantics[my_notes[i][0]]
@@ -136,7 +135,6 @@ class Scale(Interval):
                         if my_notes[i][0] in semantics.keys():
                             check_note = semantics[my_notes[i][0]]
                             first_char.append(check_note)
-
             except IndexError:
                 pass
 

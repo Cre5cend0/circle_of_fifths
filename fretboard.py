@@ -48,7 +48,14 @@ _6_string = GuitarString('e')
 
 
 def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note=False):
-    temp_bunch = note_bunch[:]
+    try:
+        temp_bunch = []
+        assert type(note_bunch[0]) is list
+        for item in note_bunch:
+            for i in item:
+                temp_bunch.append(i)
+    except AssertionError:
+        temp_bunch = note_bunch[:]
     if tuning == GuitarString.standard_tuning():
         pass
     else:
@@ -58,64 +65,73 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
         if temp_bunch[i] in _flats_to_sharps.keys():
             temp_bunch.pop(i)
             temp_bunch.insert(i, _flats_to_sharps.get(note_bunch[i]))
-            # print(temp_bunch)
 
     if not show_note:
         for string in tuning:
             fret = string.getstr_notes()
-            print(string.get_name() + '|', end='')
-            for note in fret:
-                if note in temp_bunch:
-                    i = fret.index(note)
-                    fret.pop(i)
-                    if i <= 12:
-                        fret.insert(i, '--' + str(i) + '--')
-                    elif 12 < i < 24:
-                        fret.insert(i, '--' + str(i) + '-')
-
+            if len(string.get_name()) > 1:
+                print(string.get_name() + '|', end='')
+            else:
+                print(string.get_name() + ' |', end='')
+            for index in range(len(fret)):
+                note = fret[index]
+                if index <= 9:
+                    if note in temp_bunch:
+                        fret.pop(index)
+                        fret.insert(index, '--' + str(index) + '--')
+                    else:
+                        fret.pop(index)
+                        if index == 0:
+                            fret.insert(index, '--x--')
+                        else:
+                            fret.insert(index, '-----')
                 else:
-                    i = fret.index(note)
-                    fret.pop(i)
-                    if i == 0:
-                        fret.insert(i, '--x--')
-                    elif i <= 12:
-                        fret.insert(i, '-----')
-                    elif 12 < i < 24:
-                        fret.insert(i, '---')
-                    elif i >= 24:
-                        fret.insert(i, '--')
-
+                    if note in temp_bunch:
+                        fret.pop(index)
+                        fret.insert(index, '-' + str(index) + '-')
+                    else:
+                        fret.pop(index)
+                        fret.insert(index, '----')
             fret.append('\n')
             for i in fret:
                 print(i, end="")
     else:
         for string in tuning:
-            print(string.get_name() + '|', end='')
             fret = string.getstr_notes()
-            for note in fret:
-                if note in temp_bunch:
-                    i = fret.index(note)
-                    fret.pop(i)
-                    if i <= 12:
-                        fret.insert(i, '--' + note + '--')
-                    elif 12 < i < 24:
-                        fret.insert(i, '--' + note + '-')
-
+            if len(string.get_name()) > 1:
+                print(string.get_name() + '|', end='')
+            else:
+                print(string.get_name() + ' |', end='')
+            for index in range(len(fret)):
+                note = fret[index]
+                if index <= 9:
+                    if note in temp_bunch:
+                        fret.pop(index)
+                        if len(note) > 1:
+                            fret.insert(index, '--' + str(note) + '-')
+                        else:
+                            fret.insert(index, '--' + str(note) + '--')
+                    else:
+                        fret.pop(index)
+                        if index == 0:
+                            fret.insert(index, '--x--')
+                        else:
+                            fret.insert(index, '-----')
                 else:
-                    i = fret.index(note)
-                    fret.pop(i)
-                    if i == 0:
-                        fret.insert(i, '--x--')
-                    elif i <= 12:
-                        fret.insert(i, '-----')
-                    elif 12 < i < 24:
-                        fret.insert(i, '---')
-                    elif i >= 24:
-                        fret.insert(i, '--')
+                    if note in temp_bunch:
+                        fret.pop(index)
+                        if len(note) > 1:
+                            fret.insert(index, '-' + str(note) + '-')
+                        else:
+                            fret.insert(index, '-' + str(note) + '--')
+                    else:
+                        fret.pop(index)
+                        fret.insert(index, '----')
 
             fret.append('\n')
             for i in fret:
                 print(i, end="")
+
     return
 
 

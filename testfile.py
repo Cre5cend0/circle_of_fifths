@@ -10,33 +10,33 @@ from musicalNotes import *
 # print(wholeSteplower('Bb'))
 
 from scales import *
-
-Eb = Scale('e')
-print(Eb.getNotes())
-print(Eb.get_scale('dorian'))
-print(Eb.get_scale('phrygian'))
-print(Eb.get_scale('lydian'))
-print(Eb.get_scale('mixolydian'))
-print(Eb.get_scale('aeolian'))
-print(Eb.get_scale('locrian'))
-print(Eb.get_scale('pentatonic_minor'))
-print(Eb.get_scale('pentatonic_major'))
-
-print(Scale.scale_dict)
-
-from chords import *
-
-B = Chord('e')
-print(B.chordGen('maj'))
-print(B.chordGen('min'))
-print(B.chordGen('sus2'))
-print(B.chordGen('sus4'))
-print(B.chordGen('min7'))
-print(B.chordGen('dim'))
-print(B.chordGen('aug'))
-print(B.chordGen('maj7b5'))
-print(B.chordGen('min7b5'))
-print(B.chordGen('13b9#11'))
+#
+Eb = Scale('Eb')
+# print(Eb.getNotes())
+# print(Eb.get_scale('dorian'))
+# print(Eb.get_scale('phrygian'))
+# print(Eb.get_scale('lydian'))
+# print(Eb.get_scale('mixolydian'))
+# print(Eb.get_scale('aeolian'))
+# print(Eb.get_scale('locrian'))
+# print(Eb.get_scale('pentatonic_minor'))
+# print(Eb.get_scale('pentatonic_major'))
+#
+# print(Scale.scale_dict)
+#
+# from chords import *
+#
+# B = Chord('b')
+# print(B.chordGen('maj'))
+# print(B.chordGen('min'))
+# print(B.chordGen('sus2'))
+# print(B.chordGen('sus4'))
+# print(B.chordGen('min7'))
+# print(B.chordGen('dim'))
+# print(B.chordGen('aug'))
+# print(B.chordGen('maj7b5'))
+# print(B.chordGen('min7b5'))
+# print(B.chordGen('13b9#11'))
 
 # Em = Chord('c')
 # print(Em.chordGen('maj'))
@@ -53,9 +53,16 @@ print(B.chordGen('13b9#11'))
 # print(Em.chordGen('minmaj9'))
 # print(Em.chordGen('11b9'))
 
-print(B.harmony_dict)
+# print(B.harmony_dict)
 
 from fretboard import *
 
-search = B.chordGen('min')
-print(fretGen(search, show_note=False))
+# search = B.chordGen('maj')
+# print(search)
+# print(fretGen(Eb.getNotes(), show_note=False))
+
+from chordProgression import *
+A = Progression('b').one_four_five()
+# print(A)
+print(fretGen(A[0], show_note=False))
+# print(fretGen(A[0], show_note=True))
