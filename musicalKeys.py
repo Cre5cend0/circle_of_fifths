@@ -1,14 +1,14 @@
 """Musical Keys"""
-from chords import Chord
+from chordProgression import Progression
 
 
-class Key(Chord):
+class Key(Progression):
     """each musical note is a key. And, each key has it's own attributes such as its own set of chords, major/minor relativity
     Instantiate Key -> variable with Capital letter of the keySignature. eg: Instantiate C = Key('c') -> C major scale instantiated
     Instantiate Cm = Key('cm') -> C minor scale instantiated """
 
     def __init__(self, key_sign):
-        Chord.__init__(self, key_sign)
+        Progession.__init__(self, key_sign)
         self.relativeMinor = self.getNotes()[5]
         self.relativeMajor = self.getNotes()[2]
 
