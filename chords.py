@@ -87,32 +87,11 @@ class Chord(Scale):
 
         return chord_notes
 
-    def maj_triads(self):
-        if self.mode == 'major':
-            return self.harmony_dict[self.root + '_maj'], self.harmony_dict[(self + P4) + '_maj'], self.harmony_dict[
-                (self + P5) + '_maj']
-        elif self.mode == 'minor':
-            return self.harmony_dict[(self + m3) + '_maj'], self.harmony_dict[(self + m6) + '_maj'], self.harmony_dict[
-                (self + m7) + '_maj']
-
-    def min_triads(self):
-        if self.mode == 'major':
-            return self.harmony_dict[(self + M2) + '_min'], self.harmony_dict[(self + M3) + '_min'], self.harmony_dict[
-                (self + M6) + '_min']
-        elif self.mode == 'minor':
-            return self.harmony_dict[self.root + '_min'], self.harmony_dict[((self + P4) + '_min')], self.harmony_dict[
-                (self + P5) + '_min']
-
-    def dim_triad(self):
-        if self.mode == 'major':
-            return self.harmony_dict[(self + M7) + '_dim']
-        elif self.mode == 'minor':
-            return self.harmony_dict[(self + M2) + '_dim']
-
     @classmethod
     def chord_list(cls):
         li = cls._chord_dict.keys()
         return li
+
 
 y = Chord.chord_list()
 

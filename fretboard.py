@@ -69,67 +69,73 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
     if not show_note:
         for string in tuning:
             fret = string.getstr_notes()
+            final_fret = fret[capo:]
+            fret_len = len(final_fret)
+
             if len(string.get_name()) > 1:
                 print(string.get_name() + '|', end='')
             else:
                 print(string.get_name() + ' |', end='')
-            for index in range(len(fret)):
-                note = fret[index]
+
+            for index in range(len(final_fret)):
+                note = final_fret[index]
                 if index <= 9:
                     if note in temp_bunch:
-                        fret.pop(index)
-                        fret.insert(index, '--' + str(index) + '--')
+                        final_fret.pop(index)
+                        final_fret.insert(index, '--' + str(index) + '--')
                     else:
-                        fret.pop(index)
+                        final_fret.pop(index)
                         if index == 0:
-                            fret.insert(index, '--x--')
+                            final_fret.insert(index, '--x--')
                         else:
-                            fret.insert(index, '-----')
+                            final_fret.insert(index, '-----')
                 else:
                     if note in temp_bunch:
-                        fret.pop(index)
-                        fret.insert(index, '-' + str(index) + '-')
+                        final_fret.pop(index)
+                        final_fret.insert(index, '-' + str(index) + '-')
                     else:
-                        fret.pop(index)
-                        fret.insert(index, '----')
-            fret.append('\n')
-            for i in fret:
+                        final_fret.pop(index)
+                        final_fret.insert(index, '----')
+            final_fret.append('\n')
+            for i in final_fret:
                 print(i, end="")
     else:
         for string in tuning:
             fret = string.getstr_notes()
+            final_fret = fret[capo:]
+            fret_len = len(final_fret)
             if len(string.get_name()) > 1:
                 print(string.get_name() + '|', end='')
             else:
                 print(string.get_name() + ' |', end='')
-            for index in range(len(fret)):
-                note = fret[index]
+            for index in range(fret_len):
+                note = final_fret[index]
                 if index <= 9:
                     if note in temp_bunch:
-                        fret.pop(index)
+                        final_fret.pop(index)
                         if len(note) > 1:
-                            fret.insert(index, '--' + str(note) + '-')
+                            final_fret.insert(index, '--' + str(note) + '-')
                         else:
-                            fret.insert(index, '--' + str(note) + '--')
+                            final_fret.insert(index, '--' + str(note) + '--')
                     else:
-                        fret.pop(index)
+                        final_fret.pop(index)
                         if index == 0:
-                            fret.insert(index, '--x--')
+                            final_fret.insert(index, '--x--')
                         else:
-                            fret.insert(index, '-----')
+                            final_fret.insert(index, '-----')
                 else:
                     if note in temp_bunch:
-                        fret.pop(index)
+                        final_fret.pop(index)
                         if len(note) > 1:
-                            fret.insert(index, '-' + str(note) + '-')
+                            final_fret.insert(index, '-' + str(note) + '-')
                         else:
-                            fret.insert(index, '-' + str(note) + '--')
+                            final_fret.insert(index, '-' + str(note) + '--')
                     else:
-                        fret.pop(index)
-                        fret.insert(index, '----')
+                        final_fret.pop(index)
+                        final_fret.insert(index, '----')
 
-            fret.append('\n')
-            for i in fret:
+            final_fret.append('\n')
+            for i in final_fret:
                 print(i, end="")
 
     return
