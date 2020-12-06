@@ -1,6 +1,5 @@
 import settings
 from musicalNotes import chrom_exec, accidentals, CHROMATICSCALE
-from utilities import get_key
 
 _flats_to_sharps = {'Db': 'c#', 'Eb': 'd#', 'Gb': 'f#', 'Ab': 'g#', 'Bb': 'a#', 'Cb': 'b', 'Fb': 'e'}
 
@@ -46,6 +45,9 @@ _4_string = GuitarString('d')
 _5_string = GuitarString('a')
 _6_string = GuitarString('e')
 
+
+# get the notes of first 3 or 4 or middle 3 strings, etc. todo
+# show notes in bunvhes of 3 or 4 frets like actual chord shapes todo
 
 def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note=False):
     try:
@@ -149,4 +151,3 @@ for item in accidentals.keys():
     if item not in string_dict:
         x = GuitarString(item)
         string_dict[item] = x
-

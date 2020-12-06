@@ -1,5 +1,5 @@
 from intervals import Interval
-from musicalNotes import wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
+from musicalNotes import CHROMATICSCALE, wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
 from utilities import applyEach, get_key, convert
 
 
@@ -92,7 +92,8 @@ class Scale(Interval):
         'whole_tone'         : [wholeStep, wholeStep, wholeStep, wholeStep, wholeStep, wholeStep],
         'romanian_minor'     : [wholeStep, halfStep, wholeAndhalfStep, halfStep, wholeStep, halfStep, wholeStep],
         'phrygian_dominant'  : [halfStep, wholeAndhalfStep, halfStep, wholeStep, halfStep, wholeStep, wholeStep],
-        'yo'                 : [wholeStep, wholeAndhalfStep, wholeStep, wholeStep, wholeAndhalfStep]
+        'yo'                 : [wholeStep, wholeAndhalfStep, wholeStep, wholeStep, wholeAndhalfStep],
+        'custom'             : [wholeStep, halfStep, wholeStep, wholeStep, wholeAndhalfStep, wholeStep]
     }
 
     scale_dict = {}
@@ -142,11 +143,40 @@ class Scale(Interval):
                 my_notes.pop()
                 first_char.clear()
                 self.scale_dict.update({(self.root + '_' + modal_sign): my_notes})
+                # print(self.scale_dict)
         else:
             return self.scale_dict.get((self.root + '_' + modal_sign))
 
         return my_notes
 
-    def getNotes(self):
+    def get_notes(self):
         """return a list of all the notes in the Key Signature"""
         return self.get_scale(self.mode)
+
+    def get_relativeScales(self):
+        if self.mode == 'major':
+            list_one = self.get_scale('pentatonic_major')
+        else:
+            list_one = self.get_scale('pentatonic_minor')
+        x = set(list_one)
+        list_two = []
+        for key, val in self.scale_dict.items(): #todo for minor scales
+            if key[0] == self.root:
+                y = set(val)
+                if x.issubset(y):
+                    list_two.append(key)
+        return list_two[:]
+
+    @classmethod
+    def get_modes_dict_keys(cls):
+        return cls._modes_dict.keys()
+
+
+scale_list = Scale.get_modes_dict_keys()
+
+for note in CHROMATICSCALE:
+    x = Scale(note)
+    for i in scale_list:
+        x.get_scale(i)
+
+# print(Scale.scale_dict)
