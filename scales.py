@@ -1,6 +1,6 @@
 from intervals import Interval
 from musicalNotes import CHROMATICSCALE, wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
-from utilities import applyEach, get_key, convert
+from utilities import applyEach, get_key, convert, flats_to_sharps
 
 
 class Scale(Interval):
@@ -154,17 +154,32 @@ class Scale(Interval):
         return self.get_scale(self.mode)
 
     def get_relativeScales(self):
+        """ Get the closest scale that might work for improvising over a chord progression Takes no arguments.
+        Returns a list of scale names which has the all the notes from its major or minor pentatonic scales. i.e; The the
+        musical key is set as A, then it will show you all the scale names which has the notes from A major
+        pentatonic scale. """
+        list_one = []
         if self.mode == 'major':
             list_one = self.get_scale('pentatonic_major')
         else:
             list_one = self.get_scale('pentatonic_minor')
-        x = set(list_one)
+        x = list_one
+        main_x = set(flats_to_sharps(x))
         list_two = []
-        for key, val in self.scale_dict.items(): #todo for minor scales
-            if key[0] == self.root:
-                y = set(val)
-                if x.issubset(y):
-                    list_two.append(key)
+        for key, val in self.scale_dict.items():
+            if len(self.root) == 1:
+                if key[0] == self.root:
+                    y = val
+                    main_y = set(flats_to_sharps(y))
+                    if main_x.issubset(main_y) and key[1] == '_':
+                        list_two.append(key)
+            else:
+                if key[0:2] == self.root:
+                    y = val
+                    main_y = set(flats_to_sharps(y))
+                    if main_x.issubset(main_y):
+                        list_two.append(key)
+
         return list_two[:]
 
     @classmethod

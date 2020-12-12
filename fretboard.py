@@ -1,5 +1,6 @@
 import settings
 from musicalNotes import chrom_exec, accidentals, CHROMATICSCALE
+import utilities
 
 _flats_to_sharps = {'Db': 'c#', 'Eb': 'd#', 'Gb': 'f#', 'Ab': 'g#', 'Bb': 'a#', 'Cb': 'b', 'Fb': 'e'}
 
@@ -47,7 +48,7 @@ _6_string = GuitarString('e')
 
 
 # get the notes of first 3 or 4 or middle 3 strings, etc. todo
-# show notes in bunvhes of 3 or 4 frets like actual chord shapes todo
+# show notes in bunches of 3 or 4 frets like actual chord shapes todo
 
 def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note=False):
     try:
@@ -58,15 +59,13 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
                 temp_bunch.append(i)
     except AssertionError:
         temp_bunch = note_bunch[:]
+
     if tuning == GuitarString.standard_tuning():
         pass
     else:
         tuning = GuitarString.custom_tuning(tuning)
 
-    for i in range(len(temp_bunch)):
-        if temp_bunch[i] in _flats_to_sharps.keys():
-            temp_bunch.pop(i)
-            temp_bunch.insert(i, _flats_to_sharps.get(note_bunch[i]))
+    main_bunch = utilities.flats_to_sharps(temp_bunch)
 
     if not show_note:
         for string in tuning:
@@ -82,7 +81,7 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
             for index in range(len(final_fret)):
                 note = final_fret[index]
                 if index <= 9:
-                    if note in temp_bunch:
+                    if note in main_bunch:
                         final_fret.pop(index)
                         final_fret.insert(index, '--' + str(index) + '--')
                     else:
@@ -92,7 +91,7 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
                         else:
                             final_fret.insert(index, '-----')
                 else:
-                    if note in temp_bunch:
+                    if note in main_bunch:
                         final_fret.pop(index)
                         final_fret.insert(index, '-' + str(index) + '-')
                     else:
@@ -113,7 +112,7 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
             for index in range(fret_len):
                 note = final_fret[index]
                 if index <= 9:
-                    if note in temp_bunch:
+                    if note in main_bunch:
                         final_fret.pop(index)
                         if len(note) > 1:
                             final_fret.insert(index, '--' + str(note) + '-')
@@ -126,7 +125,7 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
                         else:
                             final_fret.insert(index, '-----')
                 else:
-                    if note in temp_bunch:
+                    if note in main_bunch:
                         final_fret.pop(index)
                         if len(note) > 1:
                             final_fret.insert(index, '-' + str(note) + '-')
