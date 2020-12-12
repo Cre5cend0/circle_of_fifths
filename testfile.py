@@ -15,7 +15,7 @@ from musicalKeys import *
 #
 #
 # Eb = Scale('Eb')
-# print(Eb.getNotes())
+# print(Eb.get_notes())
 # print(Eb.get_scale('dorian'))
 # print(Eb.get_scale('phrygian'))
 # print(Eb.get_scale('lydian'))
@@ -63,7 +63,9 @@ from musicalKeys import *
 # my_list = Am.get_scale('aeolian')
 # print(my_list)
 # print(fretGen(my_list, show_note=False, capo=7))
-E.maj_triads(show_note=False, capo=4)
-E.min_triads(show_note=False, capo=4)
-scale = E.get_scale('major')
-fretGen(scale)
+# E.maj_triads(show_note=False)
+# E.min_triads(show_note=False, capo=4)
+scales = A.get_relativeScales()
+print(scales)
+fret = A.get_scale('pentatonic_major')
+fretGen(fret, show_note=False)

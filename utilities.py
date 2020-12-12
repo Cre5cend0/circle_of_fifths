@@ -54,3 +54,12 @@ def convert(note):
         similar_note = note
 
     return similar_note
+
+
+def flats_to_sharps(note_bunch):
+    temp_bunch = note_bunch[:]
+    for i in range(len(temp_bunch)):
+        if temp_bunch[i] in _flats_to_sharps.keys():
+            temp_bunch.pop(i)
+            temp_bunch.insert(i, _flats_to_sharps.get(note_bunch[i]))
+    return temp_bunch[:]
