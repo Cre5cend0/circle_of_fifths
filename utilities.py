@@ -18,12 +18,12 @@ def applyEach(funcs, param):
     return li[:]
 
 
-def applyAll(func, params, **kwargs):
+def applyAll(func, params):
     """Takes a function and a list of params as argument and for each param p in the list, returns function(p) as a
     list"""
     li = []
     for param in params:
-        result = func(param, **kwargs)
+        result = func(param)
         li.append(result)
     return li[:]
 
