@@ -62,7 +62,7 @@ def setup(pref):
         chrom_exec = CHROMATICSCALE_SHARPS[:]
     else:
         chrom_exec = CHROMATICSCALE[:]
-
+    # print(f'Accidental preference is set to {pref}')
     return
 
 
@@ -70,12 +70,14 @@ def pref_finder():
     if settings.pref is None:
         local_pref = None
         try:
-            if settings.my_key in ['Bb', 'Cb', 'Db', 'Eb', 'Ab', 'Gb', 'Fb', 'f', 'gm', 'cm', 'dm', 'fm', 'Bbm', 'Ebm']:
+            if settings.my_key.getKey() in ['Bb', 'Cb', 'Db', 'Eb', 'Ab', 'Gb', 'Fb', 'f', 'gm', 'cm', 'dm', 'fm', 'Bbm', 'Ebm']:
                 local_pref = 'flats'
-            elif settings.my_key in ['c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#', 'am', 'em', 'bm',
+            elif settings.my_key.getKey() in ['c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#', 'am', 'em', 'bm',
                                      'f#m', 'c#m', 'g#m', 'd#m']:
                 local_pref = 'sharps'
         except IndexError:
+            pass
+        except AttributeError:
             pass
         finally:
             setup(local_pref)

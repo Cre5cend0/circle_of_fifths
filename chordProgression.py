@@ -1,5 +1,7 @@
 """Randomly generate a few chords from the chosen key
 to form a progression"""
+from random import randrange, choice
+
 import settings
 from chords import *
 from musicalNotes import circle_of_fifths_mj, circle_of_fifths_mi
@@ -44,39 +46,92 @@ class Progression(Chord):
             print((my_chords[i] + '_dim'), progression[i])
             print(fretGen(progression[i], **kwargs))
 
-    def suggest_bar_chords_prog(self, next_chord):
+    def suggest_bar_chords_prog(self, next_chord=None):
         all_chords = self.get_all_chords()
         major_chords = all_chords[0]
         minor_chords = all_chords[1]
         dim_chord = all_chords[2]
+
         if self.mode == 'major':
-            one_chord, four_chord, five_chord = all_chords[0]
-            two_chord, three_chord, six_chord = all_chords[1]
-            seven_chord = all_chords[2]  # todo
-            chord_order = (one_chord, two_chord, three_chord, four_chord, five_chord, six_chord, seven_chord)
+            one_chord, four_chord, five_chord = major_chords
+            two_chord, three_chord, six_chord = minor_chords
+            seven_chord = dim_chord
+            ch_order = (one_chord, two_chord, three_chord, four_chord, five_chord, six_chord, seven_chord)
         else:
-            three_chord, six_chord, seven_chord = all_chords[0]
-            one_chord, four_chord, five_chord = all_chords[1]
-            two_chord = all_chords[2]  # todo
-            chord_order = (one_chord, two_chord, three_chord, four_chord, five_chord, six_chord, seven_chord)
-        print(chord_order)
+            three_chord, six_chord, seven_chord = major_chords
+            one_chord, four_chord, five_chord = minor_chords
+            two_chord = dim_chord
+            ch_order = (one_chord, two_chord, three_chord, four_chord, five_chord, six_chord, seven_chord)
+        print(ch_order)
+
         i = None
-        li = []
+        ch_list = []
+
         if self.mode == 'major':
-            li.append(all_my_chords[chord_order[0] + '_maj'])
+            ch_list.append(all_my_chords[one_chord + '_maj'])
         else:
-            li.append(all_my_chords[chord_order[0] + '_min'])
-        if next_chord in chord_order:
-            i = chord_order.index(next_chord)
+            ch_list.append(all_my_chords[one_chord + '_min'])
+
+        if next_chord in ch_order:
+            i = ch_order.index(next_chord)
+            if i == 0:
+                i = randrange(1, 6)
             if next_chord in major_chords:
-                li.append(all_my_chords[chord_order[i] + '_maj'])
+                ch_list.append(all_my_chords[ch_order[i] + '_maj'])
             elif next_chord in minor_chords:
-                li.append(all_my_chords[chord_order[i] + '_min'])
+                ch_list.append(all_my_chords[ch_order[i] + '_min'])
             else:
-                li.append(all_my_chords[chord_order[i] + '_dim'])
+                ch_list.append(all_my_chords[ch_order[i] + '_dim7'])
+        else:
+            i = 2
+            if self.mode == 'major':
+                ch_list.append(all_my_chords[three_chord + '_min'])
+            else:
+                ch_list.append(all_my_chords[three_chord + '_maj'])
 
-        if i == 2:
-            li.append(all_my_chords[chord_order[4] + '_maj7'])
+        while ch_list[0] != ch_list[-1]:
 
-        for item in li:
-            yield item
+            if i == 1:
+                if self.mode == 'major':
+                    ch_list.append(all_my_chords[five_chord + '_maj7'])
+                    i = 4
+                else:
+                    ch_list.append(all_my_chords[one_chord + '_min'])
+
+            if i == 2:
+                if self.mode == 'major':
+                    ch_list.append(all_my_chords[six_chord + '_min'])
+                else:
+                    ch_list.append(all_my_chords[six_chord + '_maj'])
+                i = 5
+
+            if i == 3:
+                i = choice([0, 4])
+                if self.mode == 'major':
+                    if i == 0:
+                        ch_list.append(all_my_chords[one_chord + '_maj'])
+                        break
+                    elif i == 4:
+                        ch_list.append(all_my_chords[five_chord + '_dom7'])
+                else:
+                    ch_list.append(all_my_chords[ch_order[i] + '_min'])
+
+            if i == 4:
+                if self.mode == 'major':
+                    ch_list.append(all_my_chords[one_chord + '_maj'])
+                else:
+                    ch_list.append(all_my_chords[one_chord + '_min'])
+                break
+
+            if i == 5:
+                if self.mode == 'major':
+                    ch_list.append(all_my_chords[two_chord + '_min'])
+                else:
+                    ch_list.append(all_my_chords[two_chord + '_dim7'])
+                i = 1
+
+            if i == 6:
+                i = 4
+
+        for chord in ch_list:
+            yield chord

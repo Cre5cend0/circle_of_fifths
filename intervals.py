@@ -1,4 +1,4 @@
-from musicalNotes import chrom_exec, CHROMATICSCALE
+from musicalNotes import accidentals, chrom_exec, CHROMATICSCALE
 
 
 class Interval:
@@ -17,6 +17,8 @@ class Interval:
 
             if self.root in CHROMATICSCALE:
                 self.key = key_sign
+            # elif self.root in accidentals:
+            #     self.key = accidentals[key_sign]
             else:
                 raise KeyError
         except KeyError:

@@ -8,7 +8,7 @@ class Chord(Scale):
     _chord_dict = {
         'maj'     : [unison, M3, P5],
         'min'     : [unison, m3, P5],
-        'dom7'    : [unison, M3, P5, M7],
+        'dom7'    : [unison, M3, P5, m7],
         '7'       : [unison, M3, P5, m7],
         'min7'    : [unison, m3, P5, m7],
         'maj7'    : [unison, M3, P5, M7],

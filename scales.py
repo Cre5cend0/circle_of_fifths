@@ -1,5 +1,5 @@
 from intervals import Interval
-from musicalNotes import CHROMATICSCALE, wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
+from musicalNotes import CHROMATICSCALE, chrom_exec, wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
 from utilities import applyEach, get_key, convert, flats_to_sharps
 
 
@@ -189,7 +189,7 @@ class Scale(Interval):
 
 scale_list = Scale.get_modes_dict_keys()
 
-for note in CHROMATICSCALE:
+for note in chrom_exec:
     x = Scale(note)
     for i in scale_list:
         x.get_scale(i)
