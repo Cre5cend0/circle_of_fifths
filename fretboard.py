@@ -1,10 +1,8 @@
 import settings
-from musicalNotes import chrom_exec, accidentals, CHROMATICSCALE
+from musicalNotes import chrom_exec
 import utilities
 
 _flats_to_sharps = {'Db': 'c#', 'Eb': 'd#', 'Gb': 'f#', 'Ab': 'g#', 'Bb': 'a#', 'Cb': 'b', 'Fb': 'e'}
-
-string_dict = {}
 
 
 class GuitarString:
@@ -31,10 +29,7 @@ class GuitarString:
     def custom_tuning(cls, str_list):
         my_set = []
         for i in range(6):
-            if str_list[i] in string_dict:
-                x = string_dict.get(str_list[i])
-            else:
-                x = GuitarString(str_list[i])
+            x = GuitarString(str_list[i])
             my_set.append(x)
         return my_set[:]
 
@@ -50,16 +45,17 @@ _6_string = GuitarString('e')
 # get the notes of first 3 or 4 or middle 3 strings, etc. todo
 # show notes in bunches of 3 or 4 frets like actual chord shapes todo
 
-def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note=False):
+def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note=False, is_chord=False):
     try:
         temp_bunch = []
         assert type(note_bunch[0]) is list
         for item in note_bunch:
             for i in item:
                 temp_bunch.append(i)
+        is_chord = True
     except AssertionError:
         temp_bunch = note_bunch[:]
-
+    print(temp_bunch)
     if tuning == GuitarString.standard_tuning():
         pass
     else:
@@ -100,6 +96,7 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
             final_fret.append('\n')
             for i in final_fret:
                 print(i, end="")
+        print('\n')
     else:
         for string in tuning:
             fret = string.getstr_notes()
@@ -138,15 +135,18 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
             final_fret.append('\n')
             for i in final_fret:
                 print(i, end="")
+        print('\n')
 
+    if is_chord:
+        pass
+    # todo
     return
 
-
-for item in CHROMATICSCALE:
-    x = GuitarString(item)
-    string_dict[item] = x
-
-for item in accidentals.keys():
-    if item not in string_dict:
-        x = GuitarString(item)
-        string_dict[item] = x
+# for item in CHROMATICSCALE:
+#     x = GuitarString(item)
+#     string_dict[item] = x
+#
+# for item in accidentals.keys():
+#     if item not in string_dict:
+#         x = GuitarString(item)
+#         string_dict[item] = x

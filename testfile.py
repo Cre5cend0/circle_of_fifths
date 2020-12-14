@@ -1,7 +1,9 @@
+from chords import Chord
 from musicalNotes import *
 import settings
 from fretboard import *
 from musicalKeys import *
+from scales import *
 
 # print(chrom_exec)
 # print(halfStep('Eb'))
@@ -11,8 +13,6 @@ from musicalKeys import *
 # print(wholeAndhalfStep_lower('f'))
 # print(halfSteplower('Eb'))
 # print(wholeSteplower('Bb'))
-#
-#
 #
 # Eb = Scale('Eb')
 # print(Eb.get_notes())
@@ -53,11 +53,12 @@ from musicalKeys import *
 # print(Em.chordGen('maj13#11'))
 # print(Em.chordGen('minmaj9'))
 # print(Em.chordGen('11b9'))
-
+#
 # print(B.harmony_dict)
 #
-# search = B.chordGen('maj')
+# search = B.chordGen('maj7')
 # print(search)
+# print(Chord.harmony_dict)
 # print(fretGen(search, show_note=False))
 #
 # my_list = Am.get_scale('aeolian')
@@ -65,7 +66,15 @@ from musicalKeys import *
 # print(fretGen(my_list, show_note=False, capo=7))
 # E.maj_triads(show_note=False)
 # E.min_triads(show_note=False, capo=4)
-scales = A.get_relativeScales()
-print(scales)
-fret = A.get_scale('pentatonic_major')
-fretGen(fret, show_note=False)
+# scales = A.get_relativeScales()
+# print(scales)
+# fret = C.get_scale('major')
+# fretGen(fret, show_note=False, tuning=['d', 'a', 'd', 'g', 'a', 'd'])
+
+a = Am.suggest_bar_chords_prog()
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
