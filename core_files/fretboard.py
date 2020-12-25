@@ -1,6 +1,6 @@
 import settings
-from musicalNotes import chrom_exec
-import utilities
+from core_files.musicalNotes import chrom_exec
+from utilities.func_tools import flats_to_sharps
 
 _flats_to_sharps = {'Db': 'c#', 'Eb': 'd#', 'Gb': 'f#', 'Ab': 'g#', 'Bb': 'a#', 'Cb': 'b', 'Fb': 'e'}
 
@@ -61,9 +61,11 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
     else:
         tuning = GuitarString.custom_tuning(tuning)
 
-    main_bunch = utilities.flats_to_sharps(temp_bunch)
+    main_bunch = flats_to_sharps(temp_bunch)
 
     if not show_note:
+        if capo != 0:
+            print(f"Capo on fret {capo}")
         for string in tuning:
             fret = string.getstr_notes()
             final_fret = fret[capo:]
@@ -98,6 +100,9 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
                 print(i, end="")
         print('\n')
     else:
+        if capo != 0:
+            print(f"Capo on fret {capo}")
+
         for string in tuning:
             fret = string.getstr_notes()
             final_fret = fret[capo:]

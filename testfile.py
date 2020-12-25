@@ -1,10 +1,10 @@
-from chords import Chord
-from musicalNotes import *
-import settings
-from fretboard import *
-from musicalKeys import *
-from scales import *
+from core_files.fretboard import *
+from core_files.musicalKeys import *
+from core_files.musicalNotes import *
+from core_files.scales import *
+from core_files.chords import *
 
+# Intervals test
 # print(chrom_exec)
 # print(halfStep('Eb'))
 # print(wholeStep('Bb'))
@@ -13,7 +13,8 @@ from scales import *
 # print(wholeAndhalfStep_lower('f'))
 # print(halfSteplower('Eb'))
 # print(wholeSteplower('Bb'))
-#
+
+# Scales test
 # Eb = Scale('Eb')
 # print(Eb.get_notes())
 # print(Eb.get_scale('dorian'))
@@ -24,9 +25,10 @@ from scales import *
 # print(Eb.get_scale('locrian'))
 # print(Eb.get_scale('pentatonic_minor'))
 # print(Eb.get_scale('pentatonic_major'))
-#
+
 # print(Scale.scale_dict)
-#
+
+# Chords test
 # B = Chord('b')
 # print(B.chordGen('maj'))
 # print(B.chordGen('min'))
@@ -39,42 +41,29 @@ from scales import *
 # print(B.chordGen('min7b5'))
 # print(B.chordGen('13b9#11'))
 #
-# Em = Chord('c')
-# print(Em.chordGen('maj'))
-# print(Em.chordGen('min'))
-# print(Em.chordGen('sus2'))
-# print(Em.chordGen('sus4'))
-# print(Em.chordGen('min7'))
-# print(Em.chordGen('dim'))
-# print(Em.chordGen('aug'))
-# print(Em.chordGen('maj7b5'))
-# print(Em.chordGen('min7b5'))
-# print(Em.chordGen('13b9#11'))
-# print(Em.chordGen('maj13#11'))
-# print(Em.chordGen('minmaj9'))
-# print(Em.chordGen('11b9'))
-#
 # print(B.harmony_dict)
-#
-# search = B.chordGen('maj7')
-# print(search)
-# print(Chord.harmony_dict)
-# print(fretGen(search, show_note=False))
-#
-# my_list = Am.get_scale('aeolian')
-# print(my_list)
-# print(fretGen(my_list, show_note=False, capo=7))
-# E.maj_triads(show_note=False)
-# E.min_triads(show_note=False, capo=4)
-# scales = A.get_relativeScales()
-# print(scales)
-# fret = C.get_scale('major')
-# fretGen(fret, show_note=False, tuning=['d', 'a', 'd', 'g', 'a', 'd'])
 
-a = Am.suggest_bar_chords_prog()
-print(next(a))
-print(next(a))
-print(next(a))
-print(next(a))
-print(next(a))
-print(next(a))
+# fretgen test
+my_list = Am.get_scale('minor')
+fretGen(my_list, show_note=False, tuning=['d', 'a', 'd', 'g', 'a', 'd'], capo=7)
+
+test = C.get_scale('minor')
+fretGen(test, show_note=True, capo=3)
+
+# Triads test
+G.maj_triads(show_note=False)
+G.min_triads(show_note=False)
+
+# chord progression test
+scales = G.get_relativeScales()
+print(scales)
+try:
+    a = G.suggest_bar_chords_prog()
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+except StopIteration:
+    pass

@@ -1,4 +1,4 @@
-from musicalNotes import accidentals
+from core_files.musicalNotes import accidentals
 
 """applyEach"""
 

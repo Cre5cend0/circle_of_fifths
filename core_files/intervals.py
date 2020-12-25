@@ -1,4 +1,4 @@
-from musicalNotes import accidentals, chrom_exec, CHROMATICSCALE
+from core_files.musicalNotes import chrom_exec, CHROMATICSCALE
 
 
 class Interval:
