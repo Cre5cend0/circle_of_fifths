@@ -1,0 +1,4 @@
+#TODO
+
+# list of all the question the user has asked which were not in valid inputs
+# list of questions the user could ask

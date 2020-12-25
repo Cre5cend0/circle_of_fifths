@@ -1,11 +1,8 @@
 """Randomly generate a few chords from the chosen key
 to form a progression"""
 from random import randrange, choice
-
-import settings
-from chords import *
-from musicalNotes import circle_of_fifths_mj, circle_of_fifths_mi
-from fretboard import fretGen
+from core_files.chords import *
+from core_files.fretboard import fretGen
 
 all_my_chords = Chord.get_harmony_dict()
 

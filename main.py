@@ -1,6 +1,6 @@
-from musicalKeys import *
+from core_files.musicalKeys import *
 import time
-from musicalNotes import *
+from core_files.musicalNotes import *
 
 if __name__ == '__main__':
     print()
@@ -13,11 +13,13 @@ if __name__ == '__main__':
                 pref_finder()
                 if settings.my_key:
                     print()
-                    print(f'Here are the notes from this key signature. Memorize them if you can.')
+                    print(f'Great choice! Here are the notes from this key signature: ', end='')
                     notes = settings.my_key.get_notes()
-                    print()
                     for i in notes:
                         print(i, end=' ')
+                    time.sleep(5)
+                    print()
+                    print('Hope you memorised them')
                     break
             except ValueError:
                 continue

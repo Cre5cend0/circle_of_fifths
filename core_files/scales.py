@@ -1,6 +1,6 @@
-from intervals import Interval
-from musicalNotes import CHROMATICSCALE, chrom_exec, wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
-from utilities import applyEach, get_key, convert, flats_to_sharps
+from core_files.intervals import Interval
+from core_files.musicalNotes import chrom_exec, wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
+from utilities.func_tools import applyEach, get_key, convert, flats_to_sharps
 
 
 class Scale(Interval):

@@ -1,7 +1,7 @@
 """Generates chords by stacking notes"""
-from intervals import *
-from scales import Scale
-from utilities import applyAll, runMethod
+from core_files.intervals import *
+from core_files.scales import Scale
+from utilities.func_tools import applyAll, runMethod
 
 
 class Chord(Scale):
