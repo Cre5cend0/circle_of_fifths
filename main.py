@@ -1,9 +1,12 @@
 from core_files.musicalKeys import *
 import time
 from core_files.musicalNotes import *
+from utilities.question_generator import ques, Question
+from core_files.fretboard import fretGen
 
 if __name__ == '__main__':
     print()
+
 
     def start(skip='no'):
         response = None
@@ -30,4 +33,30 @@ if __name__ == '__main__':
 
 
     start()
-    time.sleep(3)
+
+    # Asking question 1 from question_dict
+    ques_one = Question.gen(ques(1))
+
+    if ques_one:
+        print("Here's some major chords")
+        settings.my_key.maj_triads(is_chord=True)
+    elif ques_one is None:
+        pass
+
+    ques_two = Question.gen(ques(2))
+
+    if ques_two:
+        try:
+            chord = settings.my_key.suggest_bar_chords_prog()
+            fretGen(next(chord))
+        except StopIteration:
+            pass
+    elif ques_one is None:
+        pass
+
+    ques_three = Question.gen(ques(3))
+
+    if ques_three:
+        print('awesome')
+    elif ques_one is None:
+        pass

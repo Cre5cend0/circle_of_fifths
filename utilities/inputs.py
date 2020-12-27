@@ -1,9 +1,8 @@
 import os
 import sys
 import settings
+from core_files.chords import Chord
 
-clone = chordGen.Chord.keyDict.copy()
-items = clone.keys()
 expected_inputs = [
     # list of generally accepted inputs. Does not include
     # inputs such as 'try key' or 'go to', 'show', change tuning
@@ -13,9 +12,11 @@ expected_inputs = [
     'exit', 'quit', '', 'restart', 'fav',
 ]
 
-for i in items:
-    # attaching all the key names to expected_inputs
-    expected_inputs.append(i)
+# clone = Chord.harmony_dict.copy()
+# items = clone.keys()
+# for i in items:
+#     # attaching all the key names to expected_inputs
+#     expected_inputs.append(i)
 
 help = """
     type 'y', 'yes', 'Yes' or press enter to Proceed;
@@ -50,7 +51,7 @@ def inputChecker(user_input):
             return
 
     elif user_input[0:7] == 'try key':
-        from musicalKeys import Key
+        from core_files.musicalKeys import Key
         new_key = Key(user_input[8:])
         settings.my_key = new_key
         print()

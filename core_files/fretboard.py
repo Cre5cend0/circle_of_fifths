@@ -69,7 +69,6 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
         for string in tuning:
             fret = string.getstr_notes()
             final_fret = fret[capo:]
-            fret_len = len(final_fret)
 
             if len(string.get_name()) > 1:
                 print(string.get_name() + '|', end='')
@@ -95,7 +94,10 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
                     else:
                         final_fret.pop(index)
                         final_fret.insert(index, '----')
+            if is_chord:
+                final_fret = final_fret[3:7]
             final_fret.append('\n')
+
             for i in final_fret:
                 print(i, end="")
         print('\n')
@@ -142,9 +144,6 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
                 print(i, end="")
         print('\n')
 
-    if is_chord:
-        pass
-    # todo
     return
 
 # for item in CHROMATICSCALE:
