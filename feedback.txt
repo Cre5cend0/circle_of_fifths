@@ -1,0 +1,18 @@
+Show maj7? :
+Show maj7? :y
+Show maj7? :yes
+Show maj7? :no
+Show maj7? :help
+Show maj7? :exit
+Show maj7? :quit
+Would you like to view the chords? :
+Would you like to view the chords? :y
+Would you like to view the chords? :y
+Would you like to view the chords? :y
+Would you like to view the chords? :y
+Would you like to view the chords? :.
+Would you like to view the chords? :/
+Show maj7? ://
+Show maj7? :aaa
+Show maj7? :show
+Would you like to view the chords? :skip

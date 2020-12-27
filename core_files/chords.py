@@ -96,7 +96,7 @@ class Chord(Scale):
 
 
 y = Chord.chord_list()
-for item in CHROMATICSCALE:
+for item in chrom_exec:
     x = Chord(item)
     applyAll(x.chordGen, y)
 

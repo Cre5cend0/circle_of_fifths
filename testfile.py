@@ -44,26 +44,26 @@ from core_files.chords import *
 # print(B.harmony_dict)
 
 # fretgen test
-my_list = Am.get_scale('minor')
-fretGen(my_list, show_note=False, tuning=['d', 'a', 'd', 'g', 'a', 'd'], capo=7)
-
-test = C.get_scale('minor')
-fretGen(test, show_note=True, capo=3)
+# my_list = Am.get_scale('minor')
+# fretGen(my_list, show_note=False, tuning=['d', 'a', 'd', 'g', 'a', 'd'], capo=7)
+#
+# test = C.get_scale('minor')
+# fretGen(test, show_note=True, capo=3)
 
 # Triads test
-G.maj_triads(show_note=False)
-G.min_triads(show_note=False)
+G.maj_triads(show_note=False, is_chord=True)
+# G.min_triads(show_note=False, is_chord=True)
 
 # chord progression test
-scales = G.get_relativeScales()
-print(scales)
-try:
-    a = G.suggest_bar_chords_prog()
-    fretGen(next(a))
-    fretGen(next(a))
-    fretGen(next(a))
-    fretGen(next(a))
-    fretGen(next(a))
-    fretGen(next(a))
-except StopIteration:
-    pass
+# scales = G.get_relativeScales()
+# print(scales)
+# try:
+#     a = G.suggest_bar_chords_prog()
+#     fretGen(next(a))
+#     fretGen(next(a))
+#     fretGen(next(a))
+#     fretGen(next(a))
+#     fretGen(next(a))
+#     fretGen(next(a))
+# except StopIteration:
+#     pass
