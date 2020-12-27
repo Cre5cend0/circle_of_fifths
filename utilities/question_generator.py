@@ -1,5 +1,4 @@
 """A blueprint for creating questions for Interact"""
-import types
 
 from utilities.sequence import sequencer as seq
 import subprocess

@@ -54,30 +54,14 @@ chrom_exec = []
 def setup(pref):
     print('setting up...')  # todo remove line once done
     global chrom_exec
+    global CHROMATICSCALE_SHARPS
+    global CHROMATICSCALE_FlATS
     if pref == 'flats':
-        for item in CHROMATICSCALE_FlATS:
-            chrom_exec.append(item)
+        chrom_exec = CHROMATICSCALE_FlATS[:]
     elif pref == 'sharps':
-        for item in CHROMATICSCALE_SHARPS:
-            chrom_exec.append(item)
-
-    if pref is not None:  # todo
-        from core_files.scales import Scale
-        scale_list = Scale.get_modes_dict_keys()
-
-        for note in chrom_exec:
-            x = Scale(note)
-            for i in scale_list:
-                x.get_scale(i)
-
-        from core_files.chords import Chord
-        from utilities.func_tools import applyAll
-
-        y = Chord.get_chord_list()
-        for item in chrom_exec:
-            x = Chord(item)
-            applyAll(x.chordGen, y)
-
+        chrom_exec = CHROMATICSCALE_SHARPS[:]
+    else:
+        chrom_exec = CHROMATICSCALE[:]
     # print(f'Accidental preference is set to {pref}')
     return
 
@@ -86,12 +70,10 @@ def pref_finder():
     if settings.pref is None:
         local_pref = None
         try:
-            if settings.my_key.getKey() in ['Bb', 'Cb', 'Db', 'Eb', 'Ab', 'Gb', 'Fb', 'f', 'gm', 'cm', 'dm', 'fm',
-                                            'Bbm', 'Ebm']:
+            if settings.my_key.getKey() in ['Bb', 'Cb', 'Db', 'Eb', 'Ab', 'Gb', 'Fb', 'f', 'gm', 'cm', 'dm', 'fm', 'Bbm', 'Ebm']:
                 local_pref = 'flats'
-            elif settings.my_key.getKey() in ['c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#', 'am', 'em',
-                                              'bm',
-                                              'f#m', 'c#m', 'g#m', 'd#m']:
+            elif settings.my_key.getKey() in ['c', 'g', 'd', 'a', 'e', 'b', 'f#', 'c#', 'g#', 'd#', 'a#', 'am', 'em', 'bm',
+                                     'f#m', 'c#m', 'g#m', 'd#m']:
                 local_pref = 'sharps'
         except IndexError:
             pass

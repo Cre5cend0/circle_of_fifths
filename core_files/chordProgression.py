@@ -8,38 +8,36 @@ all_my_chords = Chord.get_harmony_dict()
 
 
 class Progression(Chord):
-
     def __init__(self, key_sign):
         Chord.__init__(self, key_sign)
+        if self.mode == 'major':
+            self.maj_chords = self.getRoot(), self.P4(), self.P5()
+            self.min_chords = self.M2(), self.M3(), self.M6()
+            self.dim_chord = self.M7()
+        if self.mode == 'minor':
+            self.maj_chords = self.m3(), self.m6(), self.m7()
+            self.min_chords = self.getRoot(), self.P4(), self.P5()
+            self.dim_chord = self.M2()
 
     def get_all_chords(self):
-        maj_chords, min_chords, dim_chord = None, None, None
-        if self.mode == 'major':
-            maj_chords = self.getRoot(), self.P4(), self.P5()
-            min_chords = self.M2(), self.M3(), self.M6()
-            dim_chord = self.M7()
-        if self.mode == 'minor':
-            maj_chords = self.m3(), self.m6(), self.m7()
-            min_chords = self.getRoot(), self.P4(), self.P5()
-            dim_chord = self.M2()
-        return maj_chords, min_chords, dim_chord
+        return self.maj_chords, self.min_chords, self.dim_chord
 
     def maj_triads(self, **kwargs):
-        my_chords = self.get_all_chords()[0]
+        my_chords = self.maj_chords
         progression = [all_my_chords[(my_chords[i] + '_maj')] for i in range(len(my_chords))]
         for i in range(len(progression)):
             print((my_chords[i] + '_maj'), progression[i])
             print(fretGen(progression[i], **kwargs))
 
     def min_triads(self, **kwargs):
-        my_chords = self.get_all_chords()[1]
+        my_chords = self.min_chords
         progression = [all_my_chords[(my_chords[i] + '_min')] for i in range(len(my_chords))]
         for i in range(len(progression)):
             print((my_chords[i] + '_min'), progression[i])
             print(fretGen(progression[i], **kwargs))
 
     def dim_triad(self, **kwargs):
-        my_chords = self.get_all_chords()[2]
+        my_chords = self.dim_chord
         progression = [all_my_chords[(my_chords[i] + '_dim')] for i in range(len(my_chords))]
         for i in range(len(progression)):
             print((my_chords[i] + '_dim'), progression[i])

@@ -90,13 +90,13 @@ class Chord(Scale):
         return cls.harmony_dict
 
     @classmethod
-    def get_chord_list(cls):
+    def chord_list(cls):
         li = cls._chord_dict.keys()
         return li
 
 
-# y = Chord.get_chord_list()
-# for item in CHROMATICSCALE:
-#     x = Chord(item)
-#     applyAll(x.chordGen, y)
+y = Chord.chord_list()
+for item in chrom_exec:
+    x = Chord(item)
+    applyAll(x.chordGen, y)
 

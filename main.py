@@ -3,8 +3,6 @@ import time
 from core_files.musicalNotes import *
 from utilities.question_generator import ques, Question
 from core_files.fretboard import fretGen
-from core_files.scales import Scale
-from core_files.chords import Chord
 
 if __name__ == '__main__':
     print()
@@ -15,11 +13,8 @@ if __name__ == '__main__':
         while True:
             try:
                 settings.my_key = Key(input('Hi! Choose a musical Key: '))
-
-                if isinstance(settings.my_key, Key):
-                    pref_finder()
-                    # print(Scale.scale_dict)
-                    # print(Chord.get_harmony_dict())
+                pref_finder()
+                if settings.my_key:
                     print()
                     print(f'Great choice! Here are the notes from this key signature: ', end='')
                     notes = settings.my_key.get_notes()
@@ -29,7 +24,7 @@ if __name__ == '__main__':
                     print()
                     print('Hope you memorised them')
                     break
-            except KeyError:
+            except ValueError:
                 continue
             finally:
                 print('\n')
@@ -38,6 +33,7 @@ if __name__ == '__main__':
 
 
     start()
+
     # Asking question 1 from question_dict
     ques_one = Question.gen(ques(1))
 
