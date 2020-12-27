@@ -9,7 +9,7 @@ expected_inputs = [
     # as they are followed by another argument.
 
     'yes', 'Yes', 'No', 'n', 'y', 'no', 'help',
-    'exit', 'quit', '', 'restart', 'fav',
+    'exit', 'quit', '', 'restart', 'fav', 'my turn', 'resume'
 ]
 
 # clone = Chord.harmony_dict.copy()
@@ -28,6 +28,7 @@ help = """
     type 'go to' followed by a topic to navigate through questions
     type 'fav' to add something to favourites
     type 'show' followed by anything like Intervals, scales,, fretboard etc to view them
+    type 'my turn' to switch control on user input. You can start asking questions
 """
 
 
@@ -50,13 +51,26 @@ def inputChecker(user_input):
             print(help)
             return
 
+        elif user_input == 'my turn':
+            return input('How can I help? ')
+
+        elif user_input == 'resume':
+            # switching role from user to app to ask questions
+            return 7
+
     elif user_input[0:7] == 'try key':
         from core_files.musicalKeys import Key
-        new_key = Key(user_input[8:])
-        settings.my_key = new_key
-        print()
-        print('Changing key to ' + user_input[8:])
-        return 5
+        from utilities.interact import user_turn
+        try:
+            new_key = Key(user_input[8:])
+            settings.my_key = new_key
+            print()
+            print('Changing key to ' + user_input[8:])
+            if user_turn:
+                return input('>> ')
+            return 5
+        except KeyError:
+            return ValueError
     else:
         return ValueError
 

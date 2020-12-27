@@ -78,7 +78,7 @@ def setup(pref):
             x = Chord(item)
             applyAll(x.chordGen, y)
 
-    print(f'Accidental preference is set to {pref}')
+    # print(f'Accidental preference is set to {pref}')
     return
 
 
