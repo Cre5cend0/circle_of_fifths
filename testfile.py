@@ -4,6 +4,9 @@ from core_files.musicalNotes import *
 from core_files.scales import *
 from core_files.chords import *
 
+settings.my_key = Key('Eb')
+pref_finder()
+
 # Intervals test
 # print(chrom_exec)
 # print(halfStep('Eb'))
@@ -40,7 +43,7 @@ from core_files.chords import *
 # print(B.chordGen('maj7b5'))
 # print(B.chordGen('min7b5'))
 # print(B.chordGen('13b9#11'))
-#
+
 # print(B.harmony_dict)
 
 # fretgen test
@@ -51,19 +54,20 @@ from core_files.chords import *
 # fretGen(test, show_note=True, capo=3)
 
 # Triads test
-G.maj_triads(show_note=False, is_chord=True)
-# G.min_triads(show_note=False, is_chord=True)
+
+F.maj_triads(show_note=False, is_chord=True)
+G.min_triads(show_note=False, is_chord=True)
 
 # chord progression test
-# scales = G.get_relativeScales()
-# print(scales)
-# try:
-#     a = G.suggest_bar_chords_prog()
-#     fretGen(next(a))
-#     fretGen(next(a))
-#     fretGen(next(a))
-#     fretGen(next(a))
-#     fretGen(next(a))
-#     fretGen(next(a))
-# except StopIteration:
-#     pass
+scales = Eb.get_relativeScales()
+print(scales)
+try:
+    a = Eb.suggest_bar_chords_prog()
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+    fretGen(next(a))
+except StopIteration:
+    pass

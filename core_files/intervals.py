@@ -35,6 +35,7 @@ class Interval:
             Or, Try an alternative name of the key such as E major can be written as Fb
                      '''
                   )
+            raise KeyError
 
     def getRoot(self):
         return self.root
