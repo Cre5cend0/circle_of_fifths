@@ -1,5 +1,6 @@
 """Randomly generate a few chords from the chosen key
 to form a progression"""
+import time
 from random import randrange, choice
 from core_files.chords import *
 from core_files.fretboard import fretGen
@@ -28,21 +29,21 @@ class Progression(Chord):
         my_chords = self.get_all_chords()[0]
         progression = [all_my_chords[(my_chords[i] + '_maj')] for i in range(len(my_chords))]
         for i in range(len(progression)):
-            print((my_chords[i] + '_maj'), progression[i])
+            # print((my_chords[i] + '_maj'), progression[i])
             print(fretGen(progression[i], **kwargs))
 
     def min_triads(self, **kwargs):
         my_chords = self.get_all_chords()[1]
         progression = [all_my_chords[(my_chords[i] + '_min')] for i in range(len(my_chords))]
         for i in range(len(progression)):
-            print((my_chords[i] + '_min'), progression[i])
+            # print((my_chords[i] + '_min'), progression[i])
             print(fretGen(progression[i], **kwargs))
 
     def dim_triad(self, **kwargs):
         my_chords = self.get_all_chords()[2]
         progression = [all_my_chords[(my_chords[i] + '_dim')] for i in range(len(my_chords))]
         for i in range(len(progression)):
-            print((my_chords[i] + '_dim'), progression[i])
+            # print((my_chords[i] + '_dim'), progression[i])
             print(fretGen(progression[i], **kwargs))
 
     def suggest_bar_chords_prog(self, next_chord=None):
@@ -61,7 +62,7 @@ class Progression(Chord):
             one_chord, four_chord, five_chord = minor_chords
             two_chord = dim_chord
             ch_order = (one_chord, two_chord, three_chord, four_chord, five_chord, six_chord, seven_chord)
-        print(ch_order)
+        # print(ch_order)
 
         i = None
         ch_list = []
@@ -131,6 +132,7 @@ class Progression(Chord):
 
             if i == 6:
                 i = 4
-
-        for chord in ch_list:
-            yield chord
+        # print(ch_list)
+        # for chord in ch_list:
+        #     yield chord
+        return ch_list
