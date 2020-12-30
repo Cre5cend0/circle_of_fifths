@@ -3,6 +3,7 @@ import time
 from core_files.musicalNotes import *
 from utilities.question_generator import ques, Question
 from core_files.fretboard import fretGen
+import asyncio
 from core_files.scales import Scale
 from core_files.chords import Chord
 
@@ -50,11 +51,8 @@ if __name__ == '__main__':
     ques_two = Question.gen(ques(2))
 
     if ques_two:
-        try:
-            chord = settings.my_key.suggest_bar_chords_prog()
-            fretGen(next(chord))
-        except StopIteration:
-            pass
+        chord = settings.my_key.suggest_bar_chords_prog()
+        print(fretGen(chord))
     elif ques_one is None:
         pass
 

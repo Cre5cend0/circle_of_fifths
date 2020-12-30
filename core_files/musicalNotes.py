@@ -52,7 +52,7 @@ chrom_exec = []
 
 
 def setup(pref):
-    print('setting up...')  # todo remove line once done
+    # print('setting up...')  # todo remove line once done
     global chrom_exec
     if pref == 'flats':
         for item in CHROMATICSCALE_FlATS:

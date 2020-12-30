@@ -94,6 +94,10 @@ class Chord(Scale):
         li = cls._chord_dict.keys()
         return li
 
+    @property
+    def get_chord_names(self):
+        names = self.harmony_dict.keys()
+        return list(names)
 
 # y = Chord.get_chord_list()
 # for item in CHROMATICSCALE:
