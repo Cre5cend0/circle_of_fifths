@@ -45,7 +45,7 @@ _6_string = GuitarString('e')
 # get the notes of first 3 or 4 or middle 3 strings, etc. todo
 # show notes in bunches of 3 or 4 frets like actual chord shapes todo
 
-def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note=False, is_chord=False):
+def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note=False, is_chord=False, string_range=6, fret_range=settings.my_key):
     try:
         temp_bunch = []
         assert type(note_bunch[0]) is list
@@ -55,14 +55,16 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
         is_chord = True
     except AssertionError:
         temp_bunch = note_bunch[:]
-    print(temp_bunch)
+
+    if not is_chord:
+        print(temp_bunch)
     if tuning == GuitarString.standard_tuning():
         pass
     else:
         tuning = GuitarString.custom_tuning(tuning)
-
-    main_bunch = flats_to_sharps(temp_bunch)
-
+    main_bunch = temp_bunch[:]
+    # main_bunch = flats_to_sharps(temp_bunch)
+    # print(main_bunch)
     if not show_note:
         if capo != 0:
             print(f"Capo on fret {capo}")
@@ -94,8 +96,8 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
                     else:
                         final_fret.pop(index)
                         final_fret.insert(index, '----')
-            if is_chord:
-                final_fret = final_fret[3:7]
+            # if is_chord: #add to show_notes=False todo
+            #     final_fret = final_fret[3:7]
             final_fret.append('\n')
 
             for i in final_fret:
