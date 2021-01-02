@@ -40,11 +40,9 @@ class Progression(Chord):
             print(fretGen(progression[i], **kwargs))
 
     def dim_triad(self, **kwargs):
-        my_chords = self.get_all_chords()[2]
-        progression = [all_my_chords[(my_chords[i] + '_dim')] for i in range(len(my_chords))]
-        for i in range(len(progression)):
-            # print((my_chords[i] + '_dim'), progression[i])
-            print(fretGen(progression[i], **kwargs))
+        my_chord = self.get_all_chords()[2]
+        progression = all_my_chords[(my_chord + '_dim')]
+        print(fretGen(progression, **kwargs))
 
     def suggest_bar_chords_prog(self, next_chord=None):
         all_chords = self.get_all_chords()

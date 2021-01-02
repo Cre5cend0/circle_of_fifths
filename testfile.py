@@ -4,7 +4,7 @@ from core_files.musicalNotes import *
 from core_files.scales import *
 from core_files.chords import *
 
-settings.my_key = Key('Bbm')
+settings.my_key = Key('g')
 pref_finder()
 
 # print(E.get_chord_names)
@@ -57,15 +57,16 @@ pref_finder()
 
 # Triads test
 
-E.maj_triads(show_note=False, is_chord=True)
-# Gm.min_triads(show_note=False, is_chord=True)
-# Gm.dim_triad(show_note=False, is_chord=True)
+# C.maj_triads(show_note=False, is_chord=True)
+# C.min_triads(show_note=False, is_chord=True)
+E.dim_triad(show_note=False, is_chord=True) #todo
 
 # chord progression test
 # scales = Eb.get_relativeScales()
 # print(scales)
 
-# a = Bbm.suggest_bar_chords_prog()
-# fretGen(a, capo=6)
+# a = G.suggest_bar_chords_prog('a')
+# fretGen(a)
+
 
 
