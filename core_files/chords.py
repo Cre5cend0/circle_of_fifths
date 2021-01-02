@@ -94,7 +94,6 @@ class Chord(Scale):
         li = cls._chord_dict.keys()
         return li
 
-
 # y = Chord.get_chord_list()
 # for item in CHROMATICSCALE:
 #     x = Chord(item)
