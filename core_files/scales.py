@@ -99,7 +99,7 @@ class Scale(Interval):
     scale_dict = {}
 
     def __init__(self, key_sign):
-        Interval.__init__(self, key_sign)
+        super().__init__(key_sign)
         self.mode = 'major'
         try:
             if len(self.key) > 1:
