@@ -11,7 +11,7 @@ all_my_chords = Chord.get_harmony_dict()
 class Progression(Chord):
 
     def __init__(self, key_sign):
-        Chord.__init__(self, key_sign)
+        super().__init__(key_sign)
 
     def get_all_chords(self):
         maj_chords, min_chords, dim_chord = None, None, None

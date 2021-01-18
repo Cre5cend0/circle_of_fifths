@@ -62,7 +62,7 @@ pref_finder()
 # Dm.dim_triad(show_note=False, is_chord=False) #todo
 
 a = E.get_scale('minor')
-b = C.chordGen('maj7b5')
+b = C.chordGen('add9')
 fretGen(b, is_chord=True, show_note=False, capo=0)
 
 

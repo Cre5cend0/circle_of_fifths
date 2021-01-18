@@ -72,7 +72,7 @@ class Chord(Scale):
     harmony_dict = {}
 
     def __init__(self, key_sign):
-        Scale.__init__(self, key_sign)
+        super().__init__(key_sign)
         self.name = None
 
     def chordGen(self, param):

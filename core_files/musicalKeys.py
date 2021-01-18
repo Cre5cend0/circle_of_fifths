@@ -8,7 +8,7 @@ class Key(Progression):
     Instantiate Cm = Key('cm') -> C minor scale instantiated """
 
     def __init__(self, key_sign):
-        Progression.__init__(self, key_sign)
+        super().__init__(key_sign)
 
 
 C = Key('c')
