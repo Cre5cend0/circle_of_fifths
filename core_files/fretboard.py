@@ -125,107 +125,66 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
             name = get_key(chords.Chord.get_harmony_dict(), temp_bunch)
             print(f'{name}: {temp_bunch}')
 
-        if not show_note:
-            for string in tuning:
-                fret = string.getstr_notes()  # getting all notes of a guitar string
-                final_fret = fret[capo:]  # truncating the notes on a guitar string wrt capo
+        for string in tuning:
+            fret = string.getstr_notes()  # getting all notes of a guitar string
+            final_fret = fret[capo:]  # truncating the notes on a guitar string wrt capo
 
-                # printing string names before each guitar string
-                if len(string.get_name()) > 1:
-                    print(string.get_name() + '|', end='')
-                else:
-                    print(string.get_name() + ' |', end='')
+            # printing string names before each guitar string
+            if len(string.get_name()) > 1:
+                print(string.get_name() + '|', end='')
+            else:
+                print(string.get_name() + ' |', end='')
 
-                # printing capo placeholder
-                if capo != 0:
-                    print(f'\u2561{capo}\u255e', end='')
+            # printing capo placeholder
+            if capo != 0:
+                print(f'\u2561{capo}\u255e', end='')
 
-                # replacing each note on the string with fret position
-                for index in range(len(final_fret)):
-                    note = final_fret[index]  # extracting fret note
+            # replacing each note on the string with fret position
+            for index in range(len(final_fret)):
+                note = final_fret[index]  # extracting fret note
 
-                    if index <= 9:
-                        # giving wider space between frets less than or equal to 9
-                        if note in main_bunch:
-                            final_fret.pop(index)
-                            final_fret.insert(index, '--' + str(index) + '--') # printing fret numbers with fret distances
+                if index <= 9:
+                    # giving wider space between frets less than or equal to 9
+                    if note in main_bunch:
+                        final_fret.pop(index)
+                        if not show_note:
+                            final_fret.insert(index, '--' + str(index) + '--') # printing fret number with fret distances
                         else:
-                            final_fret.pop(index)
-                            if index == 0:
-                                final_fret.insert(index, '--x--')
-                            else:
-                                final_fret.insert(index, '-----')
-                    else:
-                        # giving narrow space between frets greater than 9
-                        if note in main_bunch:
-                            final_fret.pop(index)
-                            final_fret.insert(index, '-' + str(index) + '-') # printing fret numbers with fret distances
-                        else:
-                            final_fret.pop(index)
-                            final_fret.insert(index, '----')
-
-                # setting the last fret positions to be printed wrt capo and/or is_chord
-                if is_chord:
-                    ult_fret = final_fret[num1:num2]
-                else:
-                    ult_fret = final_fret[:]
-
-                ult_fret.append('\n') # adding a new line at the end of each string
-
-                for i in ult_fret:
-                    print(i, end="") # printing each note in guitar string as required
-
-        else:
-            for string in tuning:
-                fret = string.getstr_notes() # getting all notes of a guitar string
-                final_fret = fret[capo:] # truncating the notes on a guitar string wrt capo
-
-                # printing string names before each guitar string
-                if len(string.get_name()) > 1:
-                    print(string.get_name() + '|', end='')
-                else:
-                    print(string.get_name() + ' |', end='')
-
-                # printing capo placeholder
-                if capo != 0:
-                    print(f'\u2561{capo}\u255e', end='')
-
-                # replacing each note on the string with 'fret design +  note name'
-                for index in range(len(final_fret)):
-                    note = final_fret[index] # extracting fret note
-                    if index <= 9:
-                        # giving wider space between frets less than or equal to 9
-                        if note in main_bunch:
-                            final_fret.pop(index)
                             if len(note) > 1:
-                                final_fret.insert(index, '--' + str(note) + '-') # printing musical note with fret distances
+                                final_fret.insert(index, '--' + str(note) + '-')  # printing musical note with fret distances
                             else:
                                 final_fret.insert(index, '--' + str(note) + '--')
-                        else:
-                            final_fret.pop(index)
-                            if index == 0:
-                                final_fret.insert(index, '--x--')
-                            else:
-                                final_fret.insert(index, '-----')
                     else:
-                        # giving narrow space between frets greater than 9
-                        if note in main_bunch:
-                            final_fret.pop(index)
+                        final_fret.pop(index)
+                        if index == 0:
+                            final_fret.insert(index, '--x--')
+                        else:
+                            final_fret.insert(index, '-----')
+                else:
+                    # giving narrow space between frets greater than 9
+                    if note in main_bunch:
+                        final_fret.pop(index)
+                        if not show_note:
+                            final_fret.insert(index, '-' + str(index) + '-') # printing fret number with fret distances
+                        else:
                             if len(note) > 1:
-                                final_fret.insert(index, '-' + str(note) + '-') # printing musical note with fret distances
+                                final_fret.insert(index, '-' + str(note) + '-')  # printing musical note with fret distances
                             else:
                                 final_fret.insert(index, '-' + str(note) + '--')
-                        else:
-                            final_fret.pop(index)
-                            final_fret.insert(index, '----')
+                    else:
+                        final_fret.pop(index)
+                        final_fret.insert(index, '----')
 
-                if is_chord:
-                    ult_fret = final_fret[num1:num2]
-                else:
-                    ult_fret = final_fret[:]
-                ult_fret.append('\n')
-                for i in ult_fret:
-                    print(i, end="")
+            # setting the last fret positions to be printed wrt capo and/or is_chord
+            if is_chord:
+                ult_fret = final_fret[num1:num2]
+            else:
+                ult_fret = final_fret[:]
+
+            ult_fret.append('\n') # adding a new line at the end of each string
+
+            for i in ult_fret:
+                print(i, end="") # printing each note in guitar string as required
 
         # If input notes were a set of chords, prints each chord one after the other
         if count > 1:
