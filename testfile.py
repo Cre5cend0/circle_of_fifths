@@ -4,7 +4,7 @@ from core_files.musicalNotes import *
 from core_files.scales import *
 from core_files.chords import *
 
-settings.my_key = Key('c')
+settings.my_key = Key('a')
 pref_finder()
 
 # print(E.get_chord_names)
@@ -61,9 +61,9 @@ pref_finder()
 # Dm.min_triads(show_note=False, is_chord=False)
 # Dm.dim_triad(show_note=False, is_chord=False) #todo
 
-a = E.get_scale('minor')
-b = C.chordGen('add9')
-fretGen(b, is_chord=True, show_note=False, capo=0)
+a = A.get_scale('major')
+# b = A.chordGen('major')
+fretGen(a, is_chord=True, show_note=False, capo=0)
 
 
 # chord progression test
