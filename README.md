@@ -14,6 +14,6 @@ A practice companion for any guitarist to learn different musical components fro
 
 >>> During a practice routine, a guitarist need not take their hands off the guitar to get something everytime from the program. 
 >>> Introducing a voice assistant MAC, who listens in background and accepts commands. Executes them in real time. No more convoluted if else statements. 
-"A WIP."
->>> Once Mac is ready, implementing that framework into the Interactor program here. 
+>>> Once Mac is ready, implementing that Assistant framework into the Interactor program here. 
 
+ -- A WIP. --
