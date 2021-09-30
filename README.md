@@ -3,7 +3,7 @@
 A practice companion for any guitarist to learn different musical components from theory and actively implement that in real time playing, while also capable of creating different routines and give structure to their practice.
 
 
-###v1.0
+### v1.0
 - Contains all core musical files
 - A fretboard generator
 - Text based Interactor
