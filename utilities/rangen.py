@@ -4,6 +4,7 @@ import settings
 
 
 def fret_range(capo, start=0, stop=settings.my_neck, step=1):
+
     num1 = 0
     num2 = 0
 

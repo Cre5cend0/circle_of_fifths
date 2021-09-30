@@ -1,7 +1,7 @@
 """ a decorator function for outputs"""
 
 # Decorator function
-# probably more userful for displaying fretboard than outputs
+# probably more useful for displaying fretboard than outputs
 
 
 def deco(func):
