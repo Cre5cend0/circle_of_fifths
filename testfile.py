@@ -1,11 +1,13 @@
-from core_files.fretboard import *
-from core_files.musicalKeys import *
-from core_files.musicalNotes import *
-from core_files.scales import *
-from core_files.chords import *
+from circle_of_fifths import settings
+from circle_of_fifths import fretGen
+from circle_of_fifths import Key
+from circle_of_fifths import pref_finder
+from circle_of_fifths.core_files.scales import Scale
 
 settings.my_key = Key('a')
 pref_finder()
+
+
 
 # print(E.get_chord_names)
 # print(E.get_chord_names[0])
@@ -61,9 +63,10 @@ pref_finder()
 # Dm.min_triads(show_note=False, is_chord=False)
 # Dm.dim_triad(show_note=False, is_chord=False) #todo
 
+A = Scale('A')
 a = A.get_scale('major')
 # b = A.chordGen('major')
-fretGen(a, is_chord=True, show_note=False, capo=0)
+fretGen(a, is_chord=True, show_note=False, capo=5)
 
 
 # chord progression test
