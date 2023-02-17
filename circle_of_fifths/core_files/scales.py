@@ -2,6 +2,7 @@ from circle_of_fifths.core_files.intervals import Interval
 from circle_of_fifths.core_files.musicalNotes import wholeStep, halfStep, wholeAndhalfStep, quadraStep, semantics
 from circle_of_fifths.utilities.func_tools import applyEach, get_key, convert, flats_to_sharps
 
+
 class Scale(Interval):
     """
 
@@ -185,12 +186,9 @@ class Scale(Interval):
     def get_modes_dict_keys(cls):
         return cls._modes_dict.keys()
 
-
 # scale_list = Scale.get_modes_dict_keys()
 #
 # for note in CHROMATICSCALE:
 #     x = Scale(note)
 #     for i in scale_list:
 #         x.get_scale(i)
-
-
