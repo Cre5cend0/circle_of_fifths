@@ -1,10 +1,10 @@
 import time
 
-import settings
-from core_files import chords
-from core_files.musicalNotes import chrom_exec
-from utilities import rangen
-from utilities.func_tools import flats_to_sharps, get_key
+from circle_of_fifths import settings
+from circle_of_fifths.core_files import chords
+from circle_of_fifths.core_files.musicalNotes import chrom_exec
+from circle_of_fifths.utilities import rangen
+from circle_of_fifths.utilities.func_tools import get_key
 
 _flats_to_sharps = {'Db': 'c#', 'Eb': 'd#', 'Gb': 'f#', 'Ab': 'g#', 'Bb': 'a#', 'Cb': 'b', 'Fb': 'e'}
 
@@ -78,7 +78,7 @@ def fretGen(note_bunch, tuning=GuitarString.standard_tuning(), capo=0, show_note
     else:
         tuning = GuitarString.custom_tuning(tuning)
 
-    # If using a capo, printing the position on capo on fretboard in bold
+    # If using a capo, printing the position of capo on fretboard in bold
     if capo != 0:
         print()
         print('#' * 40)

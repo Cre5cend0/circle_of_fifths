@@ -1,5 +1,5 @@
 """Musical Keys"""
-from core_files.chordProgression import Progression
+from circle_of_fifths.core_files.chordProgression import Progression
 
 
 class Key(Progression):

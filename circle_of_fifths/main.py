@@ -1,11 +1,10 @@
-from core_files.musicalKeys import *
+import settings
 import time
-from core_files.musicalNotes import *
-from utilities.question_generator import ques, Question
-from core_files.fretboard import fretGen
-import asyncio
-from core_files.scales import Scale
-from core_files.chords import Chord
+
+from circle_of_fifths.core_files.musicalKeys import Key
+from circle_of_fifths.core_files.musicalNotes import pref_finder
+from circle_of_fifths.utilities.question_generator import ques, Question
+from circle_of_fifths.core_files import fretGen
 
 if __name__ == '__main__':
     print()

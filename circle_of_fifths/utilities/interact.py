@@ -1,7 +1,6 @@
-import types
-import settings
+from circle_of_fifths import settings
 
-from utilities.inputs import inputChecker
+from circle_of_fifths.utilities.inputs import inputChecker
 
 
 def feedback(question, comment):

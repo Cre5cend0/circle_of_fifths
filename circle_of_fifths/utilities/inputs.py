@@ -1,8 +1,8 @@
 import os
 import sys
-import settings
-from core_files.chords import Chord
-from core_files.fretboard import fretGen
+from circle_of_fifths import settings
+from circle_of_fifths.core_files.chords import Chord
+from circle_of_fifths.core_files import fretGen
 
 expected_inputs = [
     # list of generally accepted inputs. Does not include
@@ -60,7 +60,7 @@ def inputChecker(user_input):
             return 7
 
     elif user_input[0:7] == 'try key':
-        from core_files.musicalKeys import Key
+        from circle_of_fifths.core_files.musicalKeys import Key
         try:
             new_key = Key(user_input[8:])
             settings.my_key = new_key

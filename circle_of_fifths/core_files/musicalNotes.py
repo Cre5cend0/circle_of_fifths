@@ -1,5 +1,5 @@
 """ Musical Notes """
-import settings
+from circle_of_fifths import settings
 
 CHROMATICSCALE = (
     'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g',
@@ -62,7 +62,7 @@ def setup(pref):
             chrom_exec.append(item)
 
     if pref is not None:  # todo
-        from core_files.scales import Scale
+        from circle_of_fifths.core_files.scales import Scale
         scale_list = Scale.get_modes_dict_keys()
 
         for note in chrom_exec:
@@ -70,8 +70,8 @@ def setup(pref):
             for i in scale_list:
                 x.get_scale(i)
 
-        from core_files.chords import Chord
-        from utilities.func_tools import applyAll
+        from circle_of_fifths.core_files.chords import Chord
+        from circle_of_fifths.utilities.func_tools import applyAll
 
         y = Chord.get_chord_list()
         for item in chrom_exec:

@@ -1,9 +1,6 @@
 """A blueprint for creating questions for Interact"""
-import types
 
-from utilities.sequence import sequencer as seq
-import subprocess
-from utilities.interact import interact
+from circle_of_fifths.utilities.interact import interact
 
 QUESTIONS_DICT = {
     1: 'Would you like to view the chords? ',

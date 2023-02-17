@@ -1,4 +1,4 @@
-from core_files.musicalNotes import accidentals
+from circle_of_fifths.core_files.musicalNotes import accidentals
 
 """applyEach"""
 

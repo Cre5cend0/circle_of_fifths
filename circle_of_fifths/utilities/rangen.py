@@ -1,6 +1,6 @@
 import random
 
-import settings
+from circle_of_fifths import settings
 
 
 def fret_range(capo, start=0, stop=settings.my_neck, step=1):

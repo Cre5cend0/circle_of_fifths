@@ -3,5 +3,6 @@
 import time
 from threading import Timer
 
-def schedule_an_event(sec,func):
+
+def schedule_an_event(sec, func):
     Timer(sec, func).start()
